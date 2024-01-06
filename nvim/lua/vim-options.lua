@@ -9,3 +9,6 @@ vim.cmd(":set mouse=a")
 
 vim.g.mapleader = " " 
 
+vim.opt.guicursor = "" -- fat cursor
+vim.opt.scrolloff = 8
+vim.opt.termguicolors = true
