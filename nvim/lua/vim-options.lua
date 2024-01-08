@@ -9,14 +9,16 @@ vim.cmd(":set mouse=a")
 
 vim.g.mapleader = " " 
 
-vim.opt.guicursor = "" -- fat cursor
+--vim.keymap.set("n", "<leader>w", ":e D:\\Python_Related<CR>")
+
+--vim.opt.guicursor = "" -- fat cursor
 vim.opt.scrolloff = 8
 vim.opt.termguicolors = true
 
 
--- Remaps 
+-- Remaps
 -- from: https://youtu.be/w7i4amO_zaE?si=qyETAhki9H5HUMb8&t=1594
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>w", vim.cmd.Ex)
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
