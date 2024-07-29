@@ -18,6 +18,34 @@ export ZSH="$HOME/.oh-my-zsh"
 # ZSH_THEME="robbyrussell"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
+# ----------------------------- KEY BINDINGS ----------------------------- #
+# devour for window swallowing
+alias zathura="devour zathura" # pdf
+alias mpv="devour mpv" # video
+alias vlc="devour vlc" # video
+alias sxiv="devour sxiv" # image
+
+alias update="sudo pacman -Syu"
+# alias logout_="loginctl terminate-user efo"
+alias install="yay -S"
+alias uninstall="yay -R"
+
+alias cd="z"
+eval "$(zoxide init zsh)"
+
+alias notes="cd $HOME/notes ; lsd"
+alias coding="cd $HOME/coding ; lsd"
+alias metu="cd $HOME/metu ; lsd"
+alias config="cd $HOME/.config ; lsd"
+alias usb="cd /run/media/efo ; lsd"
+
+# alias pip="pipx"
+alias lf="yazi"
+alias disk="pydf | head -n 2"
+
+alias wifi="nmtui"
+# ----------------------------------------------------------------------- #
+
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -117,3 +145,6 @@ source $ZSH/oh-my-zsh.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Created by `pipx` on 2024-07-25 07:21:09
+export PATH="$PATH:/home/efo/.local/bin"

@@ -13,6 +13,9 @@ return {
 				null_ls.builtins.formatting.prettier,
 				null_ls.builtins.diagnostics.eslint_d,
 
+				-- cpp
+				null_ls.builtins.formatting.clang_format,
+
 				--null_ls.builtins.completion.spell,
 				--
 				-- python

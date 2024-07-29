@@ -13,4 +13,11 @@ configuration{
     sidebar-mode: true;
 }
 
+@theme "gruvbox"
+@theme "minimal"
+@theme "material"
 @theme "catppuccin-mocha"
+@theme "onedark"
+@theme "nord"
+@theme "tokyonight"
+@theme "dracula"

@@ -35,7 +35,9 @@ return {
 			lspconfig.pyright.setup({
 				capabilities = capabilities,
 			})
-			--lspconfig.clangd.setup({})
+			lspconfig.clangd.setup({
+				capabilities = capabilities,
+			})
 
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {}) -- display hover information
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {}) -- go to definition
