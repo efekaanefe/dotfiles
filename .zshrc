@@ -17,35 +17,6 @@ export ZSH="$HOME/.oh-my-zsh"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # ZSH_THEME="robbyrussell"
 ZSH_THEME="powerlevel10k/powerlevel10k"
-
-# ----------------------------- KEY BINDINGS ----------------------------- #
-# devour for window swallowing
-alias zathura="devour zathura" # pdf
-alias mpv="devour mpv" # video
-alias vlc="devour vlc" # video
-alias sxiv="devour sxiv" # image
-
-alias update="sudo pacman -Syu"
-# alias logout_="loginctl terminate-user efo"
-alias install="yay -S"
-alias uninstall="yay -R"
-
-alias cd="z"
-eval "$(zoxide init zsh)"
-
-alias notes="cd $HOME/notes ; lsd"
-alias coding="cd $HOME/coding ; lsd"
-alias metu="cd $HOME/metu ; lsd"
-alias config="cd $HOME/.config ; lsd"
-alias usb="cd /run/media/efo ; lsd"
-
-# alias pip="pipx"
-alias lf="yazi"
-alias disk="pydf | head -n 2"
-
-alias wifi="nmtui"
-# ----------------------------------------------------------------------- #
-
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -148,3 +119,95 @@ source $ZSH/oh-my-zsh.sh
 
 # Created by `pipx` on 2024-07-25 07:21:09
 export PATH="$PATH:/home/efo/.local/bin"
+
+
+# ----------------------------- KEY BINDINGS ----------------------------- #
+# devour for window swallowing
+alias zathura="devour zathura" # pdf
+alias mpv="devour mpv" # video
+alias vlc="devour vlc" # video
+alias sxiv="devour sxiv" # image
+
+alias update="sudo pacman -Syu"
+# alias logout_="loginctl terminate-user efo"
+alias install="yay -S"
+alias uninstall="yay -R"
+
+alias cd="z"
+eval "$(zoxide init zsh)"
+
+alias ls="lsd"
+# alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
+alias tree="eza --tree --level=3"
+
+alias notes="cd $HOME/notes ; lsd"
+alias coding="cd $HOME/coding ; lsd"
+alias metu="cd $HOME/metu ; lsd"
+alias config="cd $HOME/.config ; lsd"
+alias usb="cd /run/media/efo ; lsd"
+
+# alias pip="pipx"
+alias lf="yazi"
+alias disk="pydf | head -n 2"
+
+alias wifi="nmtui"
+
+alias zsh-conf="nvim ~/.zshrc"
+# ----------------------------------------------------------------------- #
+
+
+# ------------------------------ FZF ------------------------------------ #
+
+# Set up fzf key bindings and fuzzy completion
+eval "$(fzf --zsh)"
+
+# --- setup fzf theme ---
+fg="#CBE0F0"
+bg="#011628"
+bg_highlight="#143652"
+purple="#B388FF"
+blue="#06BCE4"
+cyan="#2CF9ED"
+
+export FZF_DEFAULT_OPTS="--color=fg:${fg},bg:${bg},hl:${purple},fg+:${fg},bg+:${bg_highlight},hl+:${purple},info:${blue},prompt:${cyan},pointer:${cyan},marker:${cyan},spinner:${cyan},header:${cyan}"
+
+# -- Use fd instead of fzf --
+
+export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+
+# Use fd (https://github.com/sharkdp/fd) for listing path candidates.
+# - The first argument to the function ($1) is the base path to start traversal
+# - See the source code (completion.{bash,zsh}) for the details.
+_fzf_compgen_path() {
+  fd --hidden --exclude .git . "$1"
+}
+
+# Use fd to generate the list for directory completion
+_fzf_compgen_dir() {
+  fd --type=d --hidden --exclude .git . "$1"
+}
+
+# source ~/fzf-git.sh/fzf-git.sh
+
+show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
+
+export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
+export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
+
+# Advanced customization of fzf options via _fzf_comprun function
+# - The first argument to the function is the name of the command.
+# - You should make sure to pass the rest of the arguments to fzf.
+_fzf_comprun() {
+  local command=$1
+  shift
+
+  case "$command" in
+    cd)           fzf --preview 'eza --tree --color=always {} | head -200' "$@" ;;
+    export|unset) fzf --preview "eval 'echo \${}'"         "$@" ;;
+    ssh)          fzf --preview 'dig {}'                   "$@" ;;
+    *)            fzf --preview "$show_file_or_dir_preview" "$@" ;;
+  esac
+}
+
