@@ -96,7 +96,7 @@ return {
 			}
 
 
-		dashboard.section.header.val = logo1
+		dashboard.section.header.val = logo2
 		dashboard.section.header.opts.hl = pick_color()
 
 		dashboard.section.buttons.val = {
@@ -106,9 +106,9 @@ return {
 			dashboard.button("<C-t>", "  File Tree"),
 			--dashboard.button("<Leader>ps", "  Update plugins"),
 			dashboard.button("r", "󰄉 Recently used files", ":Telescope oldfiles <CR>"),
-			dashboard.button("p", "Python Workspace", ":cd D:\\Python_Related<CR>"),
-			dashboard.button("c", "  Configuration", ":e C:\\Users\\EFO\\AppData\\Local\\nvim<CR>"),
-			dashboard.button("q", "  Quit", ":qa<cr>"),
+			dashboard.button("p", "Python Workspace", ":cd ~/coding <CR>"),
+			dashboard.button("c", "  Configuration", ":cd ~/.config/nvim <CR>"),
+			dashboard.button("q", "  Quit", ":qa<CR>"),
 		}
 
 		alpha.setup(dashboard.opts)
