@@ -18,8 +18,6 @@ vim.opt.termguicolors = true
 
 -- Remaps
 -- from: https://youtu.be/w7i4amO_zaE?si=qyETAhki9H5HUMb8&t=1594
-vim.keymap.set("n", "<leader>w", vim.cmd.Ex)
-
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
@@ -30,10 +28,10 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
 vim.keymap.set("n", "<leader>vwm", function()
-require("vim-with-me").StartVimWithMe()
+    require("vim-with-me").StartVimWithMe()
 end)
 vim.keymap.set("n", "<leader>svwm", function()
-require("vim-with-me").StopVimWithMe()
+    require("vim-with-me").StopVimWithMe()
 end)
 
 -- greatest remap ever
@@ -67,7 +65,7 @@ vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.dotfiles/nvim/.config/nvim/lua/the
 vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 
 vim.keymap.set("n", "<leader><leader>", function()
-vim.cmd("so")
+    vim.cmd("so")
 end)
 
 -- ctrl + a to visually select everything
@@ -75,3 +73,13 @@ vim.keymap.set('n', '<C-a>', 'ggVG', { noremap = true, silent = true })
 
 -- compile and run raylib
 vim.keymap.set('n', '<leader>rl', ':term g++ src/*.cpp -Iinclude -lraylib -o sim && ./sim<CR>')
+
+--  ESC alternatives
+vim.keymap.set("i", "jk", "<Esc>", { noremap = true, silent = true })
+vim.keymap.set("i", "kj", "<Esc>", { noremap = true, silent = true })
+
+-- vim.keymap.set({ "n", "v", "i", "c" }, "<leader>e", "<Esc>", { noremap = true, silent = true })
+
+-- save all
+vim.keymap.set("n", "<leader>w", ":wa<CR>", { noremap = true, silent = true })
+
