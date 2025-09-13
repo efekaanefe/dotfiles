@@ -16,6 +16,7 @@ return {
 		-- Move to previous/next
 		map("n", "<A-,>", ":BufferPrevious<CR>", opts)
 		map("n", "<A-.>", ":BufferNext<CR>", opts)
+
 		map("n", "<A-c>", ":BufferClose<CR>", opts)
 
 		map("n", "<A-1>", ":BufferGoto 1<CR>", opts)

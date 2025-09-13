@@ -209,10 +209,12 @@ alias okular="devour okular" # pdf
 alias mpv="devour mpv" # video
 alias vlc="devour vlc" # video
 alias sxiv="devour sxiv" # image
+alias paint="devour pinta" # image editor
 alias fm="devour dolphin" # file manager gui
 alias cam="devour guvcview"
 alias thonny="devour thonny"
 # alias jupyter="firefox ; devour jupyter-notebook"
+alias monitor="devour arandr" # multiple monitor settings
 
 alias update="sudo pacman -Syu"
 # alias logout_="loginctl terminate-user efo"
@@ -238,7 +240,7 @@ alias torrent="nyaa" # https://github.com/Beastwick18/nyaa
 alias edex-ui="cd /home/efo/Desktop/Apps ; ./eDEX-UI-Linux-x86_64.AppImage"
 alias paraview="cd /home/efo/Desktop/Apps/ParaView-5.13.1/bin ; devour ./paraview ; cd -"
 alias godot="cd /home/efo/Desktop/Apps/ ; devour ./Godot_v3.6-stable_x11.64 ; cd -"
-alias anydesk="cd /home/efo/Desktop/Apps/anydesk-6.4.0-amd64/anydesk-6.4.0 ; devour ./anydesk ; cd -"
+alias anydesk="rustdesk"
 alias pdf="okular"
 alias cv="cd ~/Documents ; okular cv.pdf ; cd -"
 alias zshconf="nvim ~/.zshrc"
@@ -252,7 +254,6 @@ alias zshsrc="source ~/.zshrc"
 alias yt="firefox youtube.com"
 alias sp="ncspot"
 alias clitools="bat ~/coding/cli-tools.txt"
-alias monitor="arandr" # multiple monitor settings
 alias vol-mixer="pavucontrol" # gui app for speaker/mic related stuff
 
 alias anime="ani-cli"
@@ -264,13 +265,15 @@ alias ytd-mp3="yt-dlp -i -x --audio-format mp3"
 alias c="clear"
 # alias neo="neofetch"
 alias n="fastfetch"
-# alias t="tmux"
 # alias v="nvim"
 alias e="exit"
 alias v="fd --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs nvim" # pane-window works in tmux
 alias l="lsd"
 alias py="python3"
 alias vi="nvim"
+
+# alias t="tmux"
+alias tmux="tmux -f ~/.tmux.conf"
 
 # finds all files recursively and sorts by last modification, ignore hidden files
 alias lastmod='find . -type f -not -path "*/\.*" -exec ls -lrt {} +'
@@ -280,6 +283,7 @@ alias pandoc='docker run --rm --volume "$(pwd):/data" --user $(id -u):$(id -g) p
 alias docker461="sudo systemctl start docker; docker container exec -it me461_labs /bin/zsh"
 alias kalidocker="cd /home/efo/coding/docker-related/kalilinux-docker; docker-compose up"
 
+alias ubuntu="distrobox enter ubuntu22 -- bash"
 
 function prod ()
 {
@@ -298,8 +302,8 @@ alias mkdir="mkdir -pv"
 alias mv="mv -i"
 alias cp="cp -i"
 alias rm="rm -i"
-alias ls="lsd"
-# alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
+# alias ls="lsd"
+alias ls="eza --color=always --grid --git --no-filesize --icons=always --no-time --no-user --no-permissions"
 alias tree="eza --tree --level=3"
 
 # GIT ALIASES
@@ -325,3 +329,36 @@ eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 
 setxkbmap -option caps:swapescape
+
+
+function fzfc() {
+  local selected
+  selected=$(
+    curl -ks cht.sh/:list | \
+    sed 's|^/||' | \
+    fzf --preview='curl -ks cht.sh/{1}' --preview-window=wrap --query="$*"
+  )
+  [[ -n $selected ]] && curl -ks "cht.sh/${selected}?T"
+}
+
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/efo/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/efo/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/efo/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/efo/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+## ATLAS RELATED
+export RTROBOT_DIR=/home/efo/coding/Romer/Legged-Robotics/rtrobot
+export QUADCONTROL_DIR=/home/efo/coding/Romer/Legged-Robotics/quadcontrol
+

@@ -1,0 +1,12 @@
+BasedOnStyle: LLVM
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never  # use Always if you want actual tab characters
+
+# spaces inside parantheses
+Cpp11BracedListStyle: false   
+SpacesInContainerLiterals: true
+SpacesInParentheses: true
+SpaceBeforeParens: ControlStatements
+
+ColumnLimit: 120

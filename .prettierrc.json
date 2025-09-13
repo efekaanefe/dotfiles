@@ -1,0 +1,7 @@
+{
+  "printWidth": 120,           // ColumnLimit
+  "tabWidth": 4,               // IndentWidth/TabWidth
+  "useTabs": false,            // UseTab: Never
+  "bracketSpacing": true,      // spaces inside object/array braces, closest to SpacesInContainerLiterals
+  "spaceBeforeFunctionParen": true  // SpaceBeforeParens for function declarations
+}
