@@ -33,8 +33,8 @@ return {
 
 		-- Enable Tree-sitter based folding
 		-- zf  : Manually create a fold at the cursor
-		-- zo  : Open fold under the cursor
-		-- zc  : Close fold under the cursor
+		-- zo  : Open fold under the cursor           # IMPORTANT
+		-- zc  : Close fold under the cursor          # IMPORTANT
 		-- zr  : Open all folds
 		-- zm  : Close all folds
 		-- zM  : Close all folds globally
