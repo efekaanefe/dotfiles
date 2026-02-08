@@ -8,7 +8,16 @@ return {
 		config = function()
 			local builtin = require("telescope.builtin")
 			vim.keymap.set("n", "<C-p>", builtin.find_files, {}) --ctrl+p to find files
-			vim.keymap.set("n", "<C-f>", builtin.live_grep, {}) -- space+fg to find keywords
+			vim.keymap.set("n", "<C-f>", builtin.live_grep, {}) -- ctrl+f to find keywords
+
+            vim.keymap.set("n", "<leader>ds", function()
+              require("telescope.builtin").lsp_document_symbols({
+                symbol_width = 50,
+                show_line = false,
+              })
+            end, {}) -- space+ds to fzf symbols
+
+             
 		end,
 	},
 	{

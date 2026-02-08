@@ -9,10 +9,10 @@ return {
     local scroll = {
       up_half   = function() neoscroll.ctrl_u({ duration = 100 }) end,
       down_half = function() neoscroll.ctrl_d({ duration = 100 }) end,
-      up_full   = function() neoscroll.ctrl_b({ duration = 450 }) end,
-      down_full = function() neoscroll.ctrl_f({ duration = 450 }) end,
-      up_line   = function() neoscroll.scroll(-0.1, { move_cursor = false, duration = 100 }) end,
-      down_line = function() neoscroll.scroll( 0.1, { move_cursor = false, duration = 100 }) end,
+      -- up_full   = function() neoscroll.ctrl_b({ duration = 450 }) end,
+      -- down_full = function() neoscroll.ctrl_f({ duration = 450 }) end,
+      -- up_line   = function() neoscroll.scroll(-0.1, { move_cursor = false, duration = 100 }) end,
+      -- down_line = function() neoscroll.scroll( 0.1, { move_cursor = false, duration = 100 }) end,
     }
 
     -- keymaps
