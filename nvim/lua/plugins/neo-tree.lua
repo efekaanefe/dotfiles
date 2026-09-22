@@ -19,7 +19,12 @@ return {
             },
             filesystem = {
                 follow_current_file = true,  -- follow current file
+                filtered_items = {
+                    hide_dotfiles = false,
+                    hide_gitignored = false,
+                },
             },
+            event_handlers = require("tools.include_rename").neo_tree_event_handlers(),
         })
 		vim.keymap.set("n", "<C-t>", ":Neotree <CR>", {})
 	end,
