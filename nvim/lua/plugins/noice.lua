@@ -4,7 +4,11 @@ return {
         "folke/noice.nvim",
         event = "VeryLazy",
         opts = {
-            -- add any options here
+            lsp = {
+                -- pyright reports progress on every completion request, which noice
+                -- otherwise shows as a spinner in the bottom right
+                progress = { enabled = false },
+            },
         },
         dependencies = {
             -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries

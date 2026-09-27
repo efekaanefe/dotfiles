@@ -1,10 +1,44 @@
 return {
+
+    {
+        "supermaven-inc/supermaven-nvim",
+        config = function()
+            require("supermaven-nvim").setup({
+                keymaps = {
+                    accept_suggestion = "<Tab>",
+                    clear_suggestion = "<C-]>",
+                    accept_word = "<C-j>",
+                },
+            })
+        end,
+    },
+    -- {
+    --     "monkoose/neocodeium",
+    --     event = "VeryLazy",
+    --     config = function()
+    --         local neocodeium = require("neocodeium")
+    --
+    --         neocodeium.setup({
+    --             -- This visually collapses multi-line suggestions into a single line
+    --             -- It shows the rest only as you accept it or move down
+    --             single_line = {
+    --                 enabled = true,
+    --             },
+    --         })
+    --
+    --         -- Map your preferred keys
+    --         vim.keymap.set("i", "<Tab>", neocodeium.accept, { noremap = true, silent = true })
+    --         vim.keymap.set("i", "<C-j>", neocodeium.accept_word, { noremap = true, silent = true })
+    --
+    --         -- This is the key you'll use to accept just ONE line at a time
+    --         vim.keymap.set("i", "<C-l>", neocodeium.accept_line, { noremap = true, silent = true })
+    --
+    --         -- Key to clear/reject the suggestion
+    --         vim.keymap.set("i", "<C-]>", neocodeium.clear, { noremap = true, silent = true })
+    --     end,
+    -- },
     {
         "hrsh7th/cmp-nvim-lsp",
-    },
-    {
-        "github/copilot.vim",
-
     },
     {
         "L3MON4D3/LuaSnip",

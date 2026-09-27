@@ -6,8 +6,8 @@ return {
 		opts = opts,
 		config = function()
 			vim.o.background = "dark" -- or "light" for light mode
-			-- vim.cmd("colorscheme gruvbox")
-			vim.cmd("colorscheme catppuccin-mocha")
+			vim.cmd("colorscheme gruvbox")
+			-- vim.cmd("colorscheme catppuccin-mocha")
 			-- vim.cmd("colorscheme onedark_dark")
 		end,
 	},

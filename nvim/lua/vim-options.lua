@@ -87,6 +87,6 @@ vim.keymap.set("n", "<leader>w", ":wa<CR>", { noremap = true, silent = true })
 -- save when focus lost
 vim.api.nvim_create_autocmd({"FocusLost"}, {
   pattern = "*",
-  command = "slient! w", -- Using "w" saves only the current buffer, "wa" saves all
+  command = "silent! w", -- Using "w" saves only the current buffer, "wa" saves all
 })
 
