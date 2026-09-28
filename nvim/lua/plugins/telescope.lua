@@ -1,8 +1,13 @@
 return {
     {
         "nvim-telescope/telescope.nvim",
-        tag = "0.1.5",
-        dependencies = { "nvim-lua/plenary.nvim" },
+        -- 0.1.5 highlighted previews through nvim-treesitter's old module API, which the
+        -- main branch removed; 0.2.x uses Neovim's own vim.treesitter instead.
+        tag = "v0.2.2",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-telescope/telescope-ui-select.nvim",
+        },
         config = function()
             local telescope = require("telescope")
             local builtin = require("telescope.builtin")
@@ -23,6 +28,8 @@ return {
             local action_state = require("telescope.actions.state")
             local harpoon_mark = require("harpoon.mark")
 
+            -- One setup call only: each one replaces the previous config, so splitting
+            -- the extensions across two calls silently dropped the first one.
             telescope.setup({
                 extensions = {
                     harpoon = {
@@ -36,24 +43,14 @@ return {
                             },
                         },
                     },
-                },
-            })
-
-            telescope.load_extension("harpoon")
-        end,
-    },
-
-    {
-        "nvim-telescope/telescope-ui-select.nvim",
-        config = function()
-            require("telescope").setup({
-                extensions = {
                     ["ui-select"] = {
                         require("telescope.themes").get_dropdown({}),
                     },
                 },
             })
-            require("telescope").load_extension("ui-select")
+
+            telescope.load_extension("harpoon")
+            telescope.load_extension("ui-select")
         end,
     },
 }
