@@ -90,3 +90,8 @@ vim.api.nvim_create_autocmd({"FocusLost"}, {
   command = "silent! w", -- Using "w" saves only the current buffer, "wa" saves all
 })
 
+-- insert mode navigation
+vim.keymap.set("i", "<C-h>", "<Left>", { desc = "Move left in insert mode" })
+vim.keymap.set("i", "<C-j>", "<Down>", { desc = "Move down in insert mode" })
+vim.keymap.set("i", "<C-k>", "<Up>", { desc = "Move up in insert mode" })
+vim.keymap.set("i", "<C-l>", "<Right>", { desc = "Move right in insert mode" })

@@ -49,12 +49,10 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
+		-- blink.cmp must load first: its plugin/ file adds completion capabilities to vim.lsp.config("*").
+		dependencies = { "saghen/blink.cmp" },
 		config = function()
-			local lspconfig = require("lspconfig")
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-			lspconfig.lua_ls.setup({
-				capabilities = capabilities,
+			vim.lsp.config("lua_ls", {
 				settings = {
 					Lua = {
 						format = {
@@ -68,8 +66,7 @@ return {
 				},
 			})
 
-			lspconfig.pyright.setup({
-				capabilities = capabilities,
+			vim.lsp.config("pyright", {
 				settings = {
 					python = {
 						analysis = {
@@ -81,13 +78,11 @@ return {
 			})
 			-- Note: Pyright itself does not handle formatting; use Black, yapf, or autopep8 via null-ls if needed.
 
-			lspconfig.clangd.setup({
-				capabilities = capabilities,
-				-- clangd gets formatting from .clang-format file. Optionally set one up in your project directory or home:
-				-- Example ~/.clang-format:
-				-- BasedOnStyle: LLVM
-				-- IndentWidth: 4
-			})
+			vim.lsp.enable(vim.tbl_keys(SERVERS))
+			-- clangd gets formatting from .clang-format file. Optionally set one up in your project directory or home:
+			-- Example ~/.clang-format:
+			-- BasedOnStyle: LLVM
+			-- IndentWidth: 4
 
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
@@ -95,7 +90,7 @@ return {
 			vim.keymap.set("n", "<leader>f", function()
 				vim.lsp.buf.format({ async = true })
 			end, {})
-            vim.keymap.set("n", "<leader>hs", "<cmd>ClangdSwitchSourceHeader<CR>", {})
+	           vim.keymap.set("n", "<leader>hs", "<cmd>LspClangdSwitchSourceHeader<CR>", {})
 
 			vim.diagnostic.config({
 				virtual_text = true,
